@@ -1,17 +1,10 @@
 #!/usr/bin/env node
 
-// const yargs = require("yargs");
 import yargs from 'yargs'
-// const axios = require("axios");
 import axios from 'axios';
 
-// getPublicKey
 import { createStacksPrivateKey, makeContractCall, bufferCVFromString, intCV, broadcastTransaction, callReadOnlyFunction } from '@stacks/transactions';
-// import { getStacksWalletKey } from '@stacks/cli';
-// import * from '@stacks/transactions';
 import { StacksTestnet, StacksMainnet } from '@stacks/network';
-// const BigNum = require('bn.js');
-// import {BigNum} from 'bn.js';
 import BN from "bn.js";
 
 const options = yargs
@@ -95,9 +88,7 @@ axios.get(url, { headers: { Accept: "application/json" } })
 				})
 			}).catch(error => {
 				console.log("makeContractCall error: ", error);
-			});
-			// const transaction = await makeContractCall(txOptions);
-			// broadcastTransaction(transaction, network);		
+			});	
 		} else {
 			console.log("value within threshold. no need for an update.");
 		}		
