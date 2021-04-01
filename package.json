@@ -1,0 +1,25 @@
+{
+  "name": "stxoracle",
+  "version": "1.0.0",
+  "description": "Deploy oracle contracts on Stacks",
+  "main": "bin/index.js",
+  "bin": {
+    "stxoracle": "./bin/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stacks"
+  ],
+  "author": "pseudozach",
+  "license": "ISC",
+  "dependencies": {
+    "@stacks/network": "^1.2.2",
+    "@stacks/transactions": "^1.3.5",
+    "axios": "^0.21.1",
+    "esm": "^3.2.25",
+    "yargs": "^13.2.4"
+  }
+}
