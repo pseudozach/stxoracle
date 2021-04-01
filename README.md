@@ -9,9 +9,12 @@ This cli tool helps to deploy and update price feeds on Stacks blockchain that c
 
 ## Installation
 1. Clone the repository
-```git clone https://github.com/pseudozach/stxoracle.git```
+```
+git clone https://github.com/pseudozach/stxoracle.git
+cd stxoracle
+```
 
-2. Run with `node ./bin/index.js` or install globally with `npm install -g .`
+2. Install globally with `npm install -g .`
 
 ## Usage
 * Script needs privatekey as input so convert your mnemonic to privatekey if you dont already have it
