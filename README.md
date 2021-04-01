@@ -79,13 +79,13 @@ Options:
   * If the price difference is greater than threshold, update the price on the blockchain.
 
 ```
-stxoracle update -b BTC -c USD --ca 'yourstxaddress' --cn oracle_btcusd -t 8 -p 'yourprivatekey'
+stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
 ```
 
 * Note that it makes sense to run this script as a cron job so it can check the price every 30 minutes and keep it up to date. You could accomplish this by:
 ```
 # crontab -e
-*/30 * * * * stxoracle update -b BTC -c USD --ca 'yourstxaddress' --cn oracle_btcusd -t 8 -p 'yourprivatekey'
+*/30 * * * * stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
 ```
 
 ## Explorer
