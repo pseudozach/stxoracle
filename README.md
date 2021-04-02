@@ -86,9 +86,14 @@ stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -
 ```
 
 * Note that it makes sense to run this script as a cron job so it can check the price every 30 minutes and keep it up to date. You could accomplish this by:
+  * First find where your nodejs is:
+  `which node`
+  * Find where stxoracle is installed
+  `which stxoracle`
+  * And then combine them to run the script from cron
 ```
 # crontab -e
-*/30 * * * * stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
+*/30 * * * * /home/username/.nvm/versions/node/v12.20.2/bin/node /home/username/.nvm/versions/node/v12.20.2/bin/stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
 ```
 
 ## Explorer
