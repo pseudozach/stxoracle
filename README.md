@@ -38,13 +38,13 @@ Options:
   -n, --network  Network: mainnet or testnet       [string] [default: "testnet"]
 ```
 
-* This command will deploy a new price feed oracle contract on testnet based on [priceoracle.clar](https://github.com/pseudozach/stxoracle/blob/main/priceoracle.clar) that's included in the repository. This contract includes ways to:
+* This command will deploy a new price feed oracle contract on testnet based on [oracle_v2.clar](https://github.com/pseudozach/stxoracle/blob/main/contracts/oracle_v2.clar) that's included in the repository. This contract includes ways to:
   * Read the price
   * Update the price
   * Read oracle address 
   * Update the oracle address that can update the price
 ```
-stxoracle generate -b BTC -c USD -p 'yourprivatekey' -k 'yourstxaddress'
+stxoracle generate -b BTC -c USD -p 'oracleprivatekey' -k 'oraclestxaddress'
 ```
 
 2. Update an existing price feed oracle, you need following inputs to the script:
@@ -82,7 +82,7 @@ Options:
   * If the price difference is greater than threshold, update the price on the blockchain.
 
 ```
-stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
+stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_v2_btcusd -t 8 -p 'oracleprivatekey'
 ```
 
 * Note that it makes sense to run this script as a cron job so it can check the price every 30 minutes and keep it up to date. You could accomplish this by:
@@ -93,7 +93,7 @@ stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -
   * And then combine them to run the script from cron
 ```
 # crontab -e
-*/30 * * * * /home/username/.nvm/versions/node/v12.20.2/bin/node /home/username/.nvm/versions/node/v12.20.2/bin/stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_btcusd -t 8 -p 'oracleprivatekey'
+*/30 * * * * /home/username/.nvm/versions/node/v12.20.2/bin/node /home/username/.nvm/versions/node/v12.20.2/bin/stxoracle update -b BTC -c USD --ca 'oraclestxaddress' --cn oracle_v2_btcusd -t 8 -p 'oracleprivatekey'
 ```
 
 ## Explorer
