@@ -12,6 +12,8 @@ import { makeContractCall, makeContractDeploy, intCV, broadcastTransaction, call
 import { StacksTestnet, StacksMainnet } from '@stacks/network';
 import BN from "bn.js";
 
+const oracleversion = "v4";
+
 const options = yargs
  .command('generate', 'Deploy a new price feed oracle contract', {
  	"b": { alias: "base", describe: "Base ticker (e.g. BTC)", type: "string", demandOption: true },
@@ -34,7 +36,7 @@ const options = yargs
  	"cfr": { alias: "contractfunctionread", describe: "Oracle contract function for reading", type: "string", default: "get-price" },
  	"t": { alias: "threshold", describe: "Price threshold for updating price on contract", type: "string", default: 10}
  }, argv => {})
- .usage("Update: stxoracle update -b BTC -c USD -ca 'ST15RGYVK9ACFQWMFFA2TVASDVZH38B4VAV4WF6BJ' --cn oracle_v2_btcusd -p 'oracleaccountprivatekey'")
+ .usage("Update: stxoracle update -b BTC -c USD -ca 'ST15RGYVK9ACFQWMFFA2TVASDVZH38B4VAV4WF6BJ' --cn oracle_"+ oracleversion +"_btcusd -p 'oracleaccountprivatekey'")
 
  // .option("b", { alias: "base", describe: "Base ticker (e.g. BTC)", type: "string", demandOption: true })
  // .option("c", { alias: "convert", describe: "Convert ticker (e.g. USD)", type: "string", demandOption: true })
@@ -129,9 +131,11 @@ if(options._[0] == "update") {
 
 
 if(options._[0] == "generate") {
-	var contractname = "oracle_v2_"+options.base.toLowerCase()+options.convert.toLowerCase();
-	var contractstr = fs.readFileSync(__dirname + '/../contracts/oracle_v2.clar').toString();
-	var updatedcontract = contractstr.replace(/ST15RGYVK9ACFQWMFFA2TVASDVZH38B4VAV4WF6BJ/g, options.pubkey);
+	var contractname = "oracle_"+ oracleversion +"_"+options.base.toLowerCase()+options.convert.toLowerCase();
+	var contractstr = fs.readFileSync(__dirname + '/../contracts/oracle_'+ oracleversion +'.clar').toString();
+	var principalentry = "principal '" + options.pubkey;
+	var updatedcontract = contractstr.replace(/principal 'ST15RGYVK9ACFQWMFFA2TVASDVZH38B4VAV4WF6BJ/g, principalentry);
+	// console.log(updatedcontract);
 
 	const txOptions = {
 	  contractName: contractname,
